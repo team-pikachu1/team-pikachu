@@ -1,0 +1,296 @@
+/* === ГЛОБАЛЬНЫЕ СТИЛИ === */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #121212, #1a1a1a, #222);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.5s ease-in-out;
+}
+
+/* === ОСНОВНОЙ КОНТЕЙНЕР === */
+.container {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease-in-out;
+  width: 100%;
+  max-width: 500px;
+}
+.container:hover {
+  transform: scale(1.02);
+}
+
+/* === НАВБАР (МЕНЮ) === */
+.navbar {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+}
+.navbar-brand {
+  font-weight: bold;
+  font-size: 24px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease-in-out;
+}
+.navbar-brand:hover {
+  color: #00f7ff;
+}
+.nav-link {
+  font-size: 18px;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+.nav-link:hover {
+  color: #00f7ff;
+  transform: scale(1.1);
+}
+
+/* === КНОПКИ === */
+.btn {
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: all 0.3s ease-in-out;
+  text-transform: uppercase;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #008cff, #00f7ff);
+  border: none;
+  box-shadow: 0px 4px 10px rgba(0, 247, 255, 0.3);
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #00f7ff, #008cff);
+  transform: scale(1.05);
+  box-shadow: 0px 6px 15px rgba(0, 247, 255, 0.5);
+}
+.btn-danger {
+  background: linear-gradient(135deg, #d31027, #ea384d);
+  border: none;
+  box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.3);
+}
+.btn-danger:hover {
+  background: linear-gradient(135deg, #ea384d, #d31027);
+  transform: scale(1.05);
+  box-shadow: 0px 6px 15px rgba(255, 0, 0, 0.5);
+}
+
+/* === ФОРМА РЕГИСТРАЦИИ === */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 80vh;
+}
+.register-box {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 400px;
+  animation: fadeIn 0.7s ease-in-out;
+}
+
+/* === ПОЛЯ ВВОДА === */
+input {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  width: 100%;
+  color: white;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+input:focus {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 10px rgba(0, 247, 255, 0.6);
+}
+
+/* === КНОПКА РЕГИСТРАЦИИ === */
+.register-container .btn-primary {
+  background: linear-gradient(135deg, #3a6fcf, #1e3c72);
+  border: none;
+  padding: 12px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+.register-container .btn-primary:hover {
+  background: linear-gradient(135deg, #1e3c72, #3a6fcf);
+  transform: scale(1.05);
+  box-shadow: 0px 5px 15px rgba(58, 111, 207, 0.8);
+}
+
+/* === КАРТОЧКИ === */
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  overflow: hidden;
+}
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* === ФУТЕР === */
+.footer {
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  text-align: center;
+  padding: 15px;
+  width: 100%;
+  margin-top: auto;
+}
+
+/* === АНИМАЦИЯ ПЛАВНОГО ПОЯВЛЕНИЯ === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.container, .card, .btn {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* === МОБИЛЬНАЯ АДАПТАЦИЯ === */
+@media (max-width: 768px) {
+  .container {
+      padding: 15px;
+  }
+  .navbar-brand {
+      font-size: 18px;
+  }
+  .nav-link {
+      font-size: 16px;
+  }
+  .btn {
+      font-size: 14px;
+  }
+  .card {
+      padding: 10px;
+  }
+}
+@media (max-width: 480px) {
+  .register-container {
+      width: 90%;
+  }
+}
+
+/* === МЕЛКИЕ ФИКСЫ === */
+.text-muted {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+/* === Основные стили === */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.5s ease-in-out;
+}
+
+/* === Центрирование формы === */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* === Контейнер формы === */
+.register-box {
+  background: rgba(25, 25, 25, 0.95);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 247, 255, 0.2);
+  backdrop-filter: blur(12px);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* === Заголовок === */
+.register-box h2 {
+  font-weight: bold;
+  color: #8cb3ff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* === Поля ввода === */
+.register-box .form-control {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+.register-box .form-control:focus {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 10px rgba(140, 179, 255, 0.6);
+}
+
+/* === Кнопка регистрации === */
+.register-box .btn-primary {
+  background: linear-gradient(135deg, #3a6fcf, #1e3c72);
+  border: none;
+  padding: 12px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.register-box .btn-primary:hover {
+  background: linear-gradient(135deg, #1e3c72, #3a6fcf);
+  transform: scale(1.05);
+  box-shadow: 0px 5px 15px rgba(58, 111, 207, 0.8);
+}
+
+/* === Анимация появления === */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-15px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* === Тёмный футер === */
+.footer {
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  text-align: center;
+  padding: 15px;
+  width: 100%;
+}
+
+/* === Адаптация для мобильных устройств === */
+@media (max-width: 480px) {
+  .register-box {
+      width: 90%;
+  }
+}

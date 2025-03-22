@@ -1,0 +1,28 @@
+{% extends 'reservations/base.html' %}
+
+{% block content %}
+<div class="container">
+  <h2 class="text-center mb-4">Рестораны</h2>
+  <div class="row">
+    {% for restaurant in restaurants %}
+    <div class="col-md-4">
+      <div class="card mb-4 shadow rounded border-0 hover-effect">
+        
+        <!-- Проверка наличия изображения -->
+        {% if restaurant.photo %}
+        <img src="{{ restaurant.photo.url }}" class="card-img-top rounded-top" alt="{{ restaurant.name }}">
+        {% else %}
+        <img src="https://via.placeholder.com/400x250?text=Нет+фото" class="card-img-top rounded-top" alt="Нет фото">
+        {% endif %}
+
+        <div class="card-body">
+          <h5 class="card-title">{{ restaurant.name }}</h5>
+          <p class="card-text">{{ restaurant.description }}</p>
+          <a href="{% url 'restaurant_detail' restaurant.id %}" class="btn btn-danger">Подробнее</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'reservations/base.html' %}
+{% block content %}
+<h2>Стол №{{ table.id }}</h2>
+<p>Ресторан: {{ table.restaurant.name }}</p>
+<p>Кол-во мест: {{ table.seats_count }}</p>
+<hr>
+<a class="btn btn-warning" href="{% url 'table_update' table.pk %}">Редактировать</a>
+<a class="btn btn-danger" href="{% url 'table_delete' table.pk %}">Удалить</a>
+<a class="btn btn-secondary" href="{% url 'table_list' %}">← Назад</a>
+{% endblock %}

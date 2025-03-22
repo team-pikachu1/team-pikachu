@@ -1,0 +1,50 @@
+{% extends 'reservations/base.html' %}
+
+{% block content %}
+<div class="container">
+  <h2 class="mb-3 text-center">{{ restaurant.name }}</h2>
+  <p><b>📍 Адрес:</b> {{ restaurant.address }}</p>
+  <p><b>ℹ️ Описание:</b> {{ restaurant.description }}</p>
+
+  {% if restaurant.photo %}
+  <div class="text-center mb-4">
+    <img src="{{ restaurant.photo.url }}" class="img-fluid rounded shadow" alt="restaurant-photo" style="max-width: 500px;">
+  </div>
+  {% else %}
+  <p class="text-muted">📷 Фото отсутствует</p>
+  {% endif %}
+
+  <hr>
+
+  <!-- Кнопки управления (видны только админам) -->
+  {% if user.is_authenticated and user.is_staff %}
+  <div class="d-flex gap-2">
+    <a class="btn btn-warning" href="{% url 'restaurant_update' restaurant.pk %}">✏️ Редактировать</a>
+    <a class="btn btn-danger" href="{% url 'restaurant_delete' restaurant.pk %}">🗑️ Удалить</a>
+  </div>
+  {% endif %}
+
+  <!-- Кнопка возврата -->
+  <div class="mt-3">
+    <a class="btn btn-secondary" href="{% url 'restaurant_list' %}">← Назад к ресторанам</a>
+  </div>
+
+  <hr>
+
+  <!-- Форма для отзывов -->
+  <h4>📝 Оставьте отзыв</h4>
+  <form method="post">
+    {% csrf_token %}
+    <textarea name="review" class="form-control mb-2" placeholder="Напишите ваш отзыв..." rows="3"></textarea>
+    <button type="submit" class="btn btn-primary">Отправить</button>
+  </form>
+
+  <!-- Список отзывов -->
+  <h5 class="mt-4">Отзывы:</h5>
+  <ul class="list-group">
+    <li class="list-group-item">⭐ Отличный ресторан! - <b>Алихан</b></li>
+    <li class="list-group-item">🔥 Крутая атмосфера! - <b>Сапар</b></li>
+  </ul>
+
+</div>
+{% endblock %}

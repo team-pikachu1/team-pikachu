@@ -1,0 +1,9 @@
+{% extends 'reservations/base.html' %}
+{% block content %}
+<h3>Удалить бронь #{{ booking.id }}?</h3>
+<form method="post">
+  {% csrf_token %}
+  <button class="btn btn-danger" type="submit">Удалить</button>
+  <a class="btn btn-secondary" href="{% url 'my_bookings' %}">Отмена</a>
+</form>
+{% endblock %}

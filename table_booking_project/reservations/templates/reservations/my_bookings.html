@@ -1,0 +1,33 @@
+{% extends 'reservations/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Мои бронирования</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="input-group mt-3">
+            <select name="table_id" class="form-select">
+                {% for table in tables %}
+                <option value="{{ table.id }}">Столик {{ table.id }} ({{ table.seats_count }} мест)</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-danger">Добавить бронь</button>
+        </div>
+    </form>
+
+    {% if bookings %}
+        <ul class="list-group mt-4">
+            {% for booking in bookings %}
+                <li class="list-group-item">
+                    Столик №{{ booking.table.id }} ({{ booking.table.seats_count }} мест)
+                    <br> Дата: {{ booking.booking_date }}
+                    <a href="{% url 'booking_delete' booking.id %}" class="btn btn-sm btn-danger float-end">Удалить</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-center mt-3">У вас нет бронирований.</p>
+    {% endif %}
+</div>
+{% endblock %}

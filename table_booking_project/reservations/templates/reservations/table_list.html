@@ -1,0 +1,43 @@
+{% extends 'reservations/base.html' %}
+
+{% block content %}
+<div class="container">
+  <h2 class="text-center mb-4">Список столов</h2>
+
+  <!-- Фильтр по ресторанам -->
+  <form method="get" class="mb-3">
+    <label for="restaurant" class="form-label">Выберите ресторан:</label>
+    <select name="restaurant" id="restaurant" class="form-select" onchange="this.form.submit()">
+      <option value="">Все рестораны</option>
+      {% for restaurant in restaurants %}
+      <option value="{{ restaurant.id }}" {% if request.GET.restaurant == restaurant.id|stringformat:"s" %}selected{% endif %}>
+        {{ restaurant.name }}
+      </option>
+      {% endfor %}
+    </select>
+  </form>
+
+  <!-- Кнопка добавления столов (только для владельца) -->
+  {% if request.user.is_authenticated and request.user.is_staff %}
+    <a class="btn btn-success mb-3" href="{% url 'table_create' %}">➕ Добавить стол</a>
+  {% endif %}
+
+  <!-- Список столов -->
+  <div class="row">
+    {% for t in tables %}
+    <div class="col-md-4">
+      <div class="card mb-4 shadow rounded border-0">
+        <div class="card-body">
+          <h5 class="card-title">Стол №{{ t.id }}</h5>
+          <p class="card-text"><b>Мест:</b> {{ t.seats_count }}</p>
+          <p class="text-muted"><b>Ресторан:</b> {{ t.restaurant.name }}</p>
+          <a href="{% url 'table_detail' t.pk %}" class="btn btn-primary">🔍 Подробнее</a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p class="text-muted">Нет доступных столов</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
