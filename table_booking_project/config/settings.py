@@ -1,10 +1,12 @@
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# 🔒 Защита секретного ключа (замени на случайный)
-SECRET_KEY = 'замени-на-случайный-ключ'
+# 🔒 Секретный ключ — из .env
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # 🚀 Оставляем DEBUG=True только в разработке
 DEBUG = True
@@ -25,7 +27,7 @@ INSTALLED_APPS = [
     'reservations',
 ]
 
-# 🔄 Промежуточное ПО (Middleware)
+# 🔄 Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -36,14 +38,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# 🌍 URL-конфигурация
 ROOT_URLCONF = 'config.urls'
 
 # 📑 Шаблоны
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # 📌 Теперь в папке templates
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -58,7 +59,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# 📂 База данных (SQLite)
+# 📂 База данных
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -66,7 +67,7 @@ DATABASES = {
     }
 }
 
-# 🔐 Проверка паролей
+# 🔐 Валидаторы паролей
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -74,32 +75,31 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# 🌍 Локализация и часовой пояс
+# 🌍 Локализация
 LANGUAGE_CODE = 'ru'
 TIME_ZONE = 'Asia/Almaty'
 USE_I18N = True
 USE_TZ = True
 
-# 📂 Статические файлы
+# 📂 Статика и медиа
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# 📂 Медиа файлы
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# 📌 Настройки входа и выхода
+# 🔐 Аутентификация
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login/'
 
-# 📩 Настройки Email (для Mail.ru)
+# 📩 Почта через Mail.ru (используем .env)
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.office365.com'
+EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'alikhan12320052005@outlook.com'
-EMAIL_HOST_PASSWORD = 'ALIHAN_sapar2005'
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

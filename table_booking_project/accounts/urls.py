@@ -18,13 +18,13 @@ urlpatterns = [
     path('register/', register_view, name='register'),
 
     # 🔁 Сброс пароля
-    path('password_reset/', auth_views.PasswordResetView.as_view(
-        template_name='accounts/password_reset_form.html',
-        email_template_name='accounts/password_reset_email.html',
-        subject_template_name='accounts/password_reset_subject.txt',
-        from_email='alikhan12320052005@outlook.com',  # ← вот здесь была ошибка: не хватало запятой
-        success_url=reverse_lazy('accounts:password_reset_done')
-    ), name='password_reset'),
+ path('password_reset/', auth_views.PasswordResetView.as_view(
+    template_name='accounts/password_reset_form.html',
+    html_email_template_name='accounts/password_reset_email.html',  # ✅ Важно!
+    subject_template_name='accounts/password_reset_subject.txt',
+    from_email='alikhan.sapar@list.ru',
+    success_url=reverse_lazy('accounts:password_reset_done')
+), name='password_reset'),
 
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(
         template_name='accounts/password_reset_done.html'
